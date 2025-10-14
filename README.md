@@ -5,9 +5,4 @@ falta
 - por um wallpaper win xp
 - cmd ??
 
-
-
-personal website
-- taiwnd
-- [splice](https://spline.design/)
-- https://www.tailwindresources.com/theme/said7388-developer-portfolio/
+https://cdn.mos.cms.futurecdn.net/227ba70db8d95466908bd78ec504a5ec-1200-80.jpg

@@ -4,6 +4,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import FootBar from './FootBar';
 import IconURL from './IconURL';
 import FolderIcon from './FolderIcon';
+import AboutIcon from './AboutIcon';
 import Notepad from './Notepad';
 import Folder from './Folder'
 import {DndContext} from '@dnd-kit/core';
@@ -14,6 +15,7 @@ import blue from 'react95/dist/themes/blue';
 /* Original Windows95 font (optional) */
 import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
 import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
+import About from './About';
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -130,7 +132,16 @@ const initalDesktopState = [
     link: "./files/Resume.pdf",
     text: "Curriculum"
   },
-  { x: 50, y: 450, type: "folder_icon" }
+  { 
+    x: 50, 
+    y: 450, 
+    type: "icon",
+    img: "./img/internet.png",
+    link: "https://nmpc27.github.io/",
+    text: "Website"
+  },
+  { x: 50, y: 550, type: "folder_icon" },
+  { x: 50, y: 650, type: "about_icon" }
 ]
 
 export default function Desktop() {
@@ -155,6 +166,10 @@ export default function Desktop() {
 
   const handleOpenFolder = () => {
     setDesktopState([...desktopState, structuredClone(projectFolder)]);
+  }
+
+  const handleOpenAbout = () => {
+    setDesktopState([...desktopState, { x: 700, y: 400, type: "about"}]);
   }
 
   const handleOpenNotepad = (item) => {
@@ -190,8 +205,14 @@ export default function Desktop() {
               if (entity.type === "folder_icon") {
                 return (<FolderIcon id={idx} x={entity.x} y={entity.y} handleOpenFolder={handleOpenFolder} />)
               }
+              if (entity.type === "about_icon") {
+                return (<AboutIcon id={idx} x={entity.x} y={entity.y} handleOpenAbout={handleOpenAbout} />)
+              }
               if (entity.type === "folder") {
                 return (<Folder id={idx} x={entity.x} y={entity.y} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow} handleOpenNotepad={handleOpenNotepad}/>)
+              }
+              if (entity.type === "about") {
+                return (<About id={idx} x={entity.x} y={entity.y} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow}/>)
               }
               if (entity.type === "notepad") {
                 return (<Notepad id={idx} x={entity.x} y={entity.y} title={entity.title} projectData={projectData} handleCloseWindow={handleCloseWindow}/>)
