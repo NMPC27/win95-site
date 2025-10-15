@@ -137,16 +137,16 @@ const initalDesktopState = [
     link: "./files/Resume.pdf",
     text: "Curriculum"
   },
+  { x: 50, y: 450, type: "folder_icon" },
+  { x: 50, y: 550, type: "about_icon" },
   { 
     x: 50, 
-    y: 450, 
+    y: 650, 
     type: "icon",
     img: "./img/internet.png",
     link: "https://nmpc27.github.io/",
     text: "Website"
   },
-  { x: 50, y: 550, type: "folder_icon" },
-  { x: 50, y: 650, type: "about_icon" }
 ]
 
 export default function Desktop() {

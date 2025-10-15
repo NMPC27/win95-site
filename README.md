@@ -1,4 +1,3 @@
 # Personal Website
-falta
-- por um wallpaper win xp
+Todo:
 - cmd ??
