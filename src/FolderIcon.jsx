@@ -27,7 +27,7 @@ export default function FolderIcon({id, x, y, handleOpenFolder }) {
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes} onDoubleClick={() => handleOpenFolder()}>
       <img src={"./img/folder.png"} alt='ERROR' style={{ height: '50px', marginRight: 4 }} />
-      <h3>Projects</h3>
+      <h3 style={{ color: 'black', fontWeight: "bold" }}>Projects</h3>
     </div>
   );
 }

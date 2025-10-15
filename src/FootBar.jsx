@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   AppBar,
   Button,
   MenuList,
   MenuListItem,
   Separator,
-  TextInput,
   Toolbar
 } from 'react95';
 

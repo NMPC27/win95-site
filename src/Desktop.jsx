@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { styleReset } from 'react95';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import FootBar from './FootBar';
@@ -35,7 +35,11 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'ms_sans_serif';
   }
   body {
-    background-color: #3A6EA5;
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
   }
 `;
 

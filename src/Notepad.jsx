@@ -1,9 +1,8 @@
 import {useDraggable} from '@dnd-kit/core';
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import {
   Button,
-  Frame,
   Toolbar,
   Window,
   WindowContent,

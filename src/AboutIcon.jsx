@@ -27,7 +27,7 @@ export default function AboutIcon({id, x, y, handleOpenAbout }) {
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes} onDoubleClick={() => handleOpenAbout()}>
       <img src={"./img/pc.png"} alt='ERROR' style={{ height: '50px', marginRight: 4 }} />
-      <h3>About</h3>
+      <h3 style={{ color: 'black', fontWeight: "bold" }}>About</h3>
     </div>
   );
 }

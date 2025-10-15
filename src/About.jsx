@@ -1,10 +1,7 @@
 import {useDraggable} from '@dnd-kit/core';
-import React from 'react';
-import { GroupBox, TreeView, MenuList, MenuListItem, ScrollView } from 'react95';
+import { GroupBox} from 'react95';
 import {
   Button,
-  Frame,
-  Toolbar,
   Window,
   WindowContent,
   WindowHeader

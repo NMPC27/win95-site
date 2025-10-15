@@ -27,7 +27,7 @@ export default function IconURL({id, x, y, img, link, text }) {
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes} onDoubleClick={() => window.open(link, '_blank')}>
       <img src={img} alt='ERROR' style={{ height: '50px', marginRight: 4 }} />
-      <h3>{text}</h3>
+      <h3 style={{ color: 'black', fontWeight: "bold" }}>{text}</h3>
     </div>
   );
 }
