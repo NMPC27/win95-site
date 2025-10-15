@@ -57,11 +57,11 @@ export default function FootBar(props) {
                     }}
                     onClick={() => setOpen(false)}
                     >
-                    <MenuListItem>
+                    <MenuListItem onClick={() => props.handleOpenAbout()}>
                         <span role='img'>
                         👨‍💻
                         </span>
-                        Nuno Cunha
+                        {" "}Nuno Cunha
                     </MenuListItem>
                     <MenuListItem onClick={() => window.open("./files/Resume.pdf", '_blank')}>
                         <span role='img'>
@@ -76,7 +76,7 @@ export default function FootBar(props) {
                         Projects
                     </MenuListItem>
                     <Separator />
-                    <MenuListItem disabled>
+                    <MenuListItem onClick={() => window.location.href = "https://nmpc27.github.io/"}>
                         <span role='img'>
                         🔙
                         </span>

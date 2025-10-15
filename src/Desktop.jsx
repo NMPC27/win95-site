@@ -220,7 +220,7 @@ export default function Desktop() {
             })}           
           </div>
         </DndContext>
-        <FootBar handleOpenFolder={handleOpenFolder}/>
+        <FootBar handleOpenFolder={handleOpenFolder} handleOpenAbout={handleOpenAbout}/>
       </ThemeProvider>
     </div>
   );
