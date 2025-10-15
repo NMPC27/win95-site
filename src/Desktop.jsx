@@ -35,7 +35,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'ms_sans_serif';
   }
   body {
-    background-image: url('/img/background.jpg');
+    background-image: url('./img/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
