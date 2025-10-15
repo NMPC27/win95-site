@@ -49,7 +49,7 @@ const Wrapper = styled.div`
 
 const description = "I am a Software Developer with a degree in Informatics Engineering and hands-on experience building reliable, scalable software solutions. Skilled in Java, Python, and modern frameworks, I have worked on projects ranging from smart home systems to large-scale device management platforms in the telecommunications sector. My expertise includes backend development, microservices architecture, REST and gRPC APIs, event-driven systems (Kafka), and cloud deployment (AWS EKS, Docker, Kubernetes). I have strong experience with relational and NoSQL databases (PostgreSQL, MySQL, MongoDB) and CI/CD practices, complemented by monitoring and observability tools such as Prometheus, Grafana, and Datadog. I am passionate about delivering highquality, maintainable software that drives real impact.";
 
-export default function About({ id, x, y, title, content, handleCloseWindow }) {
+export default function About({ id, x, y, z, title, content, handleCloseWindow, updateZvalue }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id: id,
@@ -59,6 +59,7 @@ export default function About({ id, x, y, title, content, handleCloseWindow }) {
     position: 'absolute',
     top: y,
     left: x,
+    zIndex: z,
     width: 0,
     height: 0,
     backgroundColor: isDragging ? '#6c5ce7' : '#0984e3',
@@ -74,7 +75,7 @@ export default function About({ id, x, y, title, content, handleCloseWindow }) {
   };
 
   return (
-    <div style={style}>
+    <div style={style} onClick={() => updateZvalue(id)}>
       <Wrapper>
         <Window className='window'>
           <div ref={setNodeRef} {...listeners} {...attributes}>
@@ -83,15 +84,31 @@ export default function About({ id, x, y, title, content, handleCloseWindow }) {
             </WindowHeader>
           </div>
           <div style={{position: 'absolute', top: 9, right: 9}} >
-            <Button size="sm" onClick={() => handleCloseWindow(id)}>
+            <Button size="sm" onClick={(e) => {e.stopPropagation(); handleCloseWindow(id);}}>
               <span className='close-icon' />
             </Button>
           </div>
-          <WindowContent style={{ height: "400px" }}>
+          <WindowContent style={{ height: "410px" }}>
             <div style={{ display: "flex" }}>
               <div style={{ width: '400px' }}>
-              [nome h1]
-              [foto]
+                 <div style={{ display: "flex" }}>
+                  <img
+                    src={"./img/profile.jpg"}
+                    width={200}
+                    height={200}
+                    alt="Nuno Cunha"
+                    style={{margin: 10}}
+                  />
+                  <h1
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: "bold",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    Nuno Cunha
+                  </h1>
+                </div>
 
               </div>
               <div style={{ width: '20px' }} />

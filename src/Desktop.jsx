@@ -70,6 +70,7 @@ const projectData = {
 const projectFolder = {
   x: 700,
   y: 400,
+  z: null,
   type: "folder",
   title: "Projects",
   content: [
@@ -147,6 +148,7 @@ const initalDesktopState = [
 export default function Desktop() {
   const [desktopState, setDesktopState] = useState(initalDesktopState);
   const [newPos, setNewPos] = useState({x: 700, y: 400});
+  const [maxZ, setMaxZ] = useState(10);
 
   const updatePos = () => {
     if (newPos.x >= 1200) {
@@ -164,16 +166,34 @@ export default function Desktop() {
     setDesktopState(tmp)
   }
 
+  const onDragStart = (event) => {
+    if (desktopState[event.active.id].z != undefined) {
+      updateZvalue(event.active.id)
+    }
+  }
+
+  const updateZvalue = (id) => {
+    let tmp = [...desktopState];
+    tmp[id].z = maxZ;
+    setDesktopState(tmp)
+    setMaxZ(maxZ+1)
+  }
+
   const handleOpenFolder = () => {
-    setDesktopState([...desktopState, structuredClone(projectFolder)]);
+    let tmp = structuredClone(projectFolder);
+    tmp.z = maxZ;
+    setDesktopState([...desktopState, tmp]);
+    setMaxZ(maxZ+1)
   }
 
   const handleOpenAbout = () => {
-    setDesktopState([...desktopState, { x: 700, y: 400, type: "about"}]);
+    setDesktopState([...desktopState, { x: 700, y: 400, z: maxZ, type: "about"}]);
+    setMaxZ(maxZ+1)
   }
 
   const handleOpenNotepad = (item) => {
-    setDesktopState([...desktopState, { x: newPos.x, y: newPos.y, type: "notepad", title: item }]);
+    setDesktopState([...desktopState, { x: newPos.x, y: newPos.y, z: maxZ, type: "notepad", title: item }]);
+    setMaxZ(maxZ+1)
     updatePos();
   }
 
@@ -189,6 +209,7 @@ export default function Desktop() {
       <ThemeProvider theme={blue}>
         <DndContext
           onDragEnd={(event) => onDragEnd(event)}
+          onDragStart={(event) => onDragStart(event)}
         >
           <div
             style={{
@@ -209,13 +230,13 @@ export default function Desktop() {
                 return (<AboutIcon id={idx} x={entity.x} y={entity.y} handleOpenAbout={handleOpenAbout} />)
               }
               if (entity.type === "folder") {
-                return (<Folder id={idx} x={entity.x} y={entity.y} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow} handleOpenNotepad={handleOpenNotepad}/>)
+                return (<Folder id={idx} x={entity.x} y={entity.y} z={entity.z} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow} handleOpenNotepad={handleOpenNotepad} updateZvalue={updateZvalue}/>)
               }
               if (entity.type === "about") {
-                return (<About id={idx} x={entity.x} y={entity.y} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow}/>)
+                return (<About id={idx} x={entity.x} y={entity.y} z={entity.z} title={entity.title} content={entity.content} handleCloseWindow={handleCloseWindow} updateZvalue={updateZvalue}/>)
               }
               if (entity.type === "notepad") {
-                return (<Notepad id={idx} x={entity.x} y={entity.y} title={entity.title} projectData={projectData} handleCloseWindow={handleCloseWindow}/>)
+                return (<Notepad id={idx} x={entity.x} y={entity.y} z={entity.z} title={entity.title} projectData={projectData} handleCloseWindow={handleCloseWindow} updateZvalue={updateZvalue}/>)
               }
             })}           
           </div>

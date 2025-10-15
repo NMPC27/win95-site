@@ -143,7 +143,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Notepad({ id, x, y, title, projectData, handleCloseWindow }) {
+export default function Notepad({ id, x, y, z, title, projectData, handleCloseWindow, updateZvalue }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id: id,
@@ -153,6 +153,7 @@ export default function Notepad({ id, x, y, title, projectData, handleCloseWindo
     position: 'absolute',
     top: y,
     left: x,
+    zIndex: z,
     width: 0,
     height: 0,
     backgroundColor: isDragging ? '#6c5ce7' : '#0984e3',
@@ -185,7 +186,7 @@ export default function Notepad({ id, x, y, title, projectData, handleCloseWindo
   }, []);
 
   return (
-    <div style={style}>
+    <div style={style} onClick={() => updateZvalue(id)}>
       <Wrapper>
         <Window className='window'>
           <div ref={setNodeRef} {...listeners} {...attributes}>
@@ -194,7 +195,7 @@ export default function Notepad({ id, x, y, title, projectData, handleCloseWindo
             </WindowHeader>
           </div>
           <div style={{position: 'absolute', top: 9, right: 9}} >
-            <Button size="sm" onClick={() => handleCloseWindow(id)}>
+            <Button size="sm" onClick={(e) => {e.stopPropagation(); handleCloseWindow(id);}}>
               <span className='close-icon' />
             </Button>
           </div>
